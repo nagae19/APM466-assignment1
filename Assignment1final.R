@@ -114,7 +114,7 @@ CAN_data <- read.csv("CANmatrix.csv", stringsAsFactors = FALSE)
 glimse(CAN_data)
 CAN_date$spotr <- 0
 for (i in nrow(CAN_data)) {
-  CAN_date[i,'spotr'] <- Find_spot_rate(CAN_data[i,'DATE'],
+  CAN_data[i,'spotr'] <- Find_spot_rate(CAN_data[i,'DATE'],
                                         Bond_Price[i],
                                         coupon_rate[i],
                                         YTM[i],
@@ -122,6 +122,9 @@ for (i in nrow(CAN_data)) {
                                         )
   
 }
+SPOT <- CAN_data$spotr
+SPOT_matrix <- as.matrix(SPOT)
+SPOT_matrix[,1]
 list_of_colors <- sample(colours(), length(settle_date))
 list_of_colors
 timeinterval <- c(0.5,1,1.5,2,2.5,3,3.5,4,4.5,5)
